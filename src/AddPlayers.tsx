@@ -4,17 +4,13 @@ import { useState } from 'react'
 import PlayerForm from './PlayerForm';
 import PlayerList from './PlayerList';
 
-const AddPlayers = () => {
-  const [players, setPlayers] = useState<Player[]>([]);
+interface AddPlayersProps {
+  addPlayer(player: Player): void
+  removePlayer(playerId: number): void
+  players: Player[]
+}
 
-  function addPlayer(player: Player) {
-    setPlayers((players) => [...players, player])
-  }
-
-  function removePlayer(playerId: number) {
-    setPlayers(players => players.filter(p => p.id != playerId))
-  }
-
+const AddPlayers = ({ addPlayer, removePlayer, players }: AddPlayersProps) => {
   return (
     <Box>
       <PlayerForm onSubmit={addPlayer}></PlayerForm>
