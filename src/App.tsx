@@ -5,10 +5,32 @@ import AddPlayers from './AddPlayers';
 import Header from './Header';
 import TeamSelection from './TeamSelection';
 import { Player } from './types';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+
+function getLocalStorage<T>(key: string, initialValue: T) {
+  try {
+    const value = window.localStorage.getItem(key);
+    return value ? JSON.parse(value) : initialValue;
+  } catch (e) {
+    // if error, return initial value
+    return initialValue;
+  }
+}
 
 function App() {
-  const [players, setPlayers] = useState<Player[]>([]);
+  const [players, setPlayers] = useState<Player[]>(() => getLocalStorage<Player[]>("players", []));
+
+  useEffect(() => {
+    const storedPlayers = localStorage.getItem("players");
+    if (storedPlayers) {
+      const parsedPlayers = JSON.parse(storedPlayers) as Player[];
+      setPlayers(parsedPlayers);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('players', JSON.stringify(players));
+  }, [players]);
 
   function addPlayer(player: Player) {
     setPlayers((players) => [...players, player])
