@@ -1,12 +1,11 @@
 import { useState } from 'react';
-import { v4 as uuidv4 } from 'uuid'; // import biblioteki generującej unikalne identyfikatory UUID
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import Slider from '@mui/material/Slider';
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
-
+import { Player } from './types';
 
 interface PlayerFormProps {
   onSubmit: (player: Player) => void;
@@ -45,6 +44,7 @@ function PlayerForm({ onSubmit }: PlayerFormProps) {
           onChange={handleNameChange}
           fullWidth
           margin="normal"
+          required
         />
         <Box sx={{ mt: 2 }}>
           <Typography id="skill-slider" gutterBottom>
