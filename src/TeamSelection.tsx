@@ -49,8 +49,10 @@ const TeamSelection = ({ players }: TeamSelectionProps) => {
           Losuj drużyny
         </Button>
       </Box>
-      <TeamPlayers title={'Team1'} players={firstTeam}></TeamPlayers>
-      <TeamPlayers title={'Team2'} players={secondTeam}></TeamPlayers>
+      <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 2 }}>
+        <TeamPlayers title={'Team1'} players={firstTeam} />
+        <TeamPlayers title={'Team2'} players={secondTeam} />
+      </Box>
     </Box>
   );
 };
