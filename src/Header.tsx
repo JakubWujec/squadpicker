@@ -12,6 +12,9 @@ const Header = () => {
         <Button component={Link} to="/teams" variant="contained" size="large">
           Teams
         </Button>
+        <Button component={Link} to="/compatiblities" variant="contained" size="large">
+          Compatiblities
+        </Button>
       </Toolbar>
     </AppBar>
   );
