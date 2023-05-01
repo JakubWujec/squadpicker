@@ -1,20 +1,20 @@
 import { useState } from 'react';
 import { Button, TextField, Grid, MenuItem } from '@mui/material';
-import { Player } from './types';
+import { Compatibility, Player } from './types';
+import { CompatibilityValue } from './enums';
 
 interface TeamCompatibilitiesFormProps {
   players: Player[];
-  handleAddIncompatibility: (playerA: Player, playerB: Player) => void;
-  handleAddCompatibility: (playerA: Player, playerB: Player) => void;
+  handleAddCompatibility: (compatibility: Compatibility) => void;
 }
 
 const TeamCompatibilitiesForm = ({
-  players, handleAddCompatibility, handleAddIncompatibility
+  players, handleAddCompatibility
 }: TeamCompatibilitiesFormProps) => {
   const [playerA, setPlayerA] = useState<Player | null>(null);
   const [playerB, setPlayerB] = useState<Player | null>(null);
 
-  const bothPlayersSelected = playerA && playerB
+  const canAddCompatiblity = playerA && playerB && playerA.name != playerB.name;
 
 
   const handlePlayerAChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -61,19 +61,19 @@ const TeamCompatibilitiesForm = ({
       </Grid>
       <Grid item xs={12}>
         <Button
-          disabled={!bothPlayersSelected}
+          disabled={!canAddCompatiblity}
           variant="contained"
           color={'primary'}
-          onClick={() => handleAddCompatibility(playerA!, playerB!)}>
+          onClick={() => handleAddCompatibility({ playerA: playerA!, playerB: playerB!, value: CompatibilityValue.MustPlayTogether })}>
           Add Compatibility
         </Button>
       </Grid>
       <Grid item xs={12}>
         <Button
-          disabled={!bothPlayersSelected}
+          disabled={!canAddCompatiblity}
           variant="contained"
           color="secondary"
-          onClick={() => handleAddIncompatibility(playerA!, playerB!)}>
+          onClick={() => handleAddCompatibility({ playerA: playerA!, playerB: playerB!, value: CompatibilityValue.CannotPlayTogether })}>
           Add Incompatibility
         </Button>
       </Grid>
