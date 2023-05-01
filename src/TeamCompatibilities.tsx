@@ -1,6 +1,7 @@
 import { useState } from "react";
 import TeamCompatibilitiesForm from "./TeamCompatibilitiesForm";
-import { Player } from "./types";
+import { Compatibility, Player } from "./types";
+import { CompatibilityValue } from "./enums";
 import TeamCompatibilitiesList from "./TeamCompatibilitiesList";
 
 interface CompatibilitiesProps {
@@ -8,18 +9,17 @@ interface CompatibilitiesProps {
 }
 
 const TeamCompatibilities = ({ players }: CompatibilitiesProps) => {
-  const [compatibilities, setCompatibilities] = useState<[Player, Player][]>([]);
-  const [incompatibilities, setIncompatibilities] = useState<[Player, Player][]>([]);
+  const [compatibilities, setCompatibilities] = useState<Compatibility[]>([]);
 
   const handleAddCompatibility = (playerA: Player, playerB: Player) => {
     if (playerA && playerB) {
-      setCompatibilities([...compatibilities, [playerA, playerB]])
+      setCompatibilities([...compatibilities, { playerA, playerB, value: CompatibilityValue.MustPlayTogether }])
     }
   };
 
   const handleAddIncompatibility = (playerA: Player, playerB: Player) => {
     if (playerA && playerB) {
-      setIncompatibilities([...compatibilities, [playerA, playerB]])
+      setCompatibilities([...compatibilities, { playerA, playerB, value: CompatibilityValue.CannotPlayTogether }])
     }
   };
 
