@@ -3,6 +3,7 @@ import TeamCompatibilitiesForm from "./TeamCompatibilitiesForm";
 import { Compatibility, Player } from "./types";
 import { CompatibilityValue } from "./enums";
 import TeamCompatibilitiesList from "./TeamCompatibilitiesList";
+import { toast } from "react-toastify";
 
 interface CompatibilitiesProps {
   players: Player[];

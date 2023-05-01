@@ -7,6 +7,8 @@ import TeamSelection from './TeamSelection';
 import { Player } from './types';
 import { useState, useEffect } from 'react';
 import TeamCompatibilities from './TeamCompatibilities';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function getLocalStorage<T>(key: string, initialValue: T) {
   try {
@@ -45,6 +47,7 @@ function App() {
     <div>
       <BrowserRouter>
         <Header />
+        <ToastContainer autoClose={2500} />
         <main className='routes'>
           <Routes>
             <Route path="/" element={<AddPlayers addPlayer={addPlayer} removePlayer={removePlayer} players={players} />} />
