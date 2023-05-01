@@ -7,7 +7,7 @@ interface CompatibilitiesProps {
   players: Player[];
 }
 
-const Compatibilities = ({ players }: CompatibilitiesProps) => {
+const TeamCompatibilities = ({ players }: CompatibilitiesProps) => {
   const [compatibilities, setCompatibilities] = useState<[Player, Player][]>([]);
   const [incompatibilities, setIncompatibilities] = useState<[Player, Player][]>([]);
 
@@ -36,4 +36,4 @@ const Compatibilities = ({ players }: CompatibilitiesProps) => {
 }
 
 
-export default Compatibilities;
+export default TeamCompatibilities;

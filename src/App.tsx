@@ -6,7 +6,7 @@ import Header from './Header';
 import TeamSelection from './TeamSelection';
 import { Player } from './types';
 import { useState, useEffect } from 'react';
-import Compatibilities from './Compatibilities';
+import TeamCompatibilities from './TeamCompatibilities';
 
 function getLocalStorage<T>(key: string, initialValue: T) {
   try {
@@ -49,7 +49,7 @@ function App() {
           <Routes>
             <Route path="/" element={<AddPlayers addPlayer={addPlayer} removePlayer={removePlayer} players={players} />} />
             <Route path="/teams" element={<TeamSelection players={players} />} />
-            <Route path="/compatiblities" element={<Compatibilities players={players} />} />
+            <Route path="/compatiblities" element={<TeamCompatibilities players={players} />} />
           </Routes>
         </main>
       </BrowserRouter>
