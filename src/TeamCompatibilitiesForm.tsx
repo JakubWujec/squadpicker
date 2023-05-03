@@ -37,7 +37,7 @@ const TeamCompatibilitiesForm = ({
           select
         >
           {players.map((player) => (
-            <MenuItem key={player.id} value={player.name}>
+            <MenuItem key={player.name} value={player.name}>
               {player.name}
             </MenuItem>
           ))}
@@ -53,7 +53,7 @@ const TeamCompatibilitiesForm = ({
           select
         >
           {players.map((player) => (
-            <MenuItem key={player.id} value={player.name}>
+            <MenuItem key={player.name} value={player.name}>
               {player.name}
             </MenuItem>
           ))}

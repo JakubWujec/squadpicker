@@ -3,7 +3,7 @@ import { Box, IconButton, Typography } from '@mui/material';
 import { Delete as DeleteIcon } from "@mui/icons-material"
 interface PlayerListProps {
   players: Player[];
-  onDelete: (id: number) => void;
+  onDelete: (name: string) => void;
 }
 
 const PlayerList = ({ players, onDelete }: PlayerListProps) => {
@@ -11,7 +11,7 @@ const PlayerList = ({ players, onDelete }: PlayerListProps) => {
     <Box sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', gap: 2, justifyContent: "center" }}>
       {players.map((player) => (
         <Box
-          key={player.id}
+          key={player.name}
           sx={{
             display: 'flex',
             flexDirection: 'column',
@@ -28,7 +28,7 @@ const PlayerList = ({ players, onDelete }: PlayerListProps) => {
             {player.name}
           </Typography>
           <Typography variant="subtitle1">Skill: {player.skill}</Typography>
-          <IconButton aria-label="delete" onClick={() => onDelete(player.id)}>
+          <IconButton aria-label="delete" onClick={() => onDelete(player.name)}>
             <DeleteIcon />
           </IconButton>
         </Box>

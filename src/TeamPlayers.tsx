@@ -16,7 +16,7 @@ const TeamPlayers = ({ title, players }: TeamPlayersProps) => {
       </Typography>
       <List>
         {players.map((player) => (
-          <ListItem key={player.id}>
+          <ListItem key={player.name}>
             {player.name} (skill: {player.skill})
           </ListItem>
         ))}

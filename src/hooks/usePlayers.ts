@@ -20,8 +20,8 @@ export function usePlayers() {
 
   }
 
-  function removePlayer(playerId: number) {
-    setPlayers((players) => players.filter((p) => p.id !== playerId));
+  function removePlayer(playerName: string) {
+    setPlayers((players) => players.filter((p) => p.name !== playerName));
   }
 
   return { players, addPlayer, removePlayer };

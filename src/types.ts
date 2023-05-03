@@ -1,7 +1,6 @@
 import { CompatibilityValue } from "./enums";
 
 interface Player {
-  id: number;
   name: string;
   skill: number;
 }
