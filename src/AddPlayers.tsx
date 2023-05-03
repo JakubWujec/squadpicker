@@ -1,12 +1,11 @@
-import { Player } from './types';
-import { Box, Typography, List, ListItem } from '@mui/material';
-import { useState } from 'react'
+import { Box } from '@mui/material';
 import PlayerForm from './PlayerForm';
 import PlayerList from './PlayerList';
+import { Player } from './types';
 
 interface AddPlayersProps {
   addPlayer(player: Player): void
-  removePlayer(playerId: number): void
+  removePlayer(playerName: string): void
   players: Player[]
 }
 

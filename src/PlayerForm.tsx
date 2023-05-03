@@ -27,7 +27,7 @@ function PlayerForm({ onSubmit }: PlayerFormProps) {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    onSubmit({ id: Math.floor(Math.random() * 1000000), name, skill }); // generowanie losowego id za pomocą Math.random()
+    onSubmit({ name, skill });
     setName('');
     setSkill(5);
   };
