@@ -1,15 +1,47 @@
 import { Box, Button } from '@mui/material';
 import { useState } from 'react';
-import { Player } from './types';
+import { Compatibility, Player } from './types';
 import TeamPlayers from './TeamPlayers';
+import { CompatibilityValue } from './enums';
 
 interface TeamSelectionProps {
   players: Player[];
+  compatibilities: Compatibility[];
 }
 
-const TeamSelection = ({ players }: TeamSelectionProps) => {
+const TeamSelection = ({ players, compatibilities }: TeamSelectionProps) => {
   const [firstTeam, setFirstTeam] = useState<Player[]>([]);
   const [secondTeam, setSecondTeam] = useState<Player[]>([]);
+  const pass = compatibilitiesFullfilled([firstTeam, secondTeam], compatibilities);
+
+  function compatibilitiesFullfilled(teams: Player[][], compatibilities: Compatibility[]) {
+    for (const compatibility of compatibilities) {
+      if (!compatibilityFullfilled(teams, compatibility)) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  function compatibilityFullfilled(teams: Player[][], compatibility: Compatibility) {
+    const { playerA, playerB, value } = compatibility;
+    if (value === CompatibilityValue.MustPlayTogether) {
+      for (const team of teams) {
+        if (team.includes(playerA) && team.includes(playerB)) {
+          return true;
+        }
+      }
+      return false;
+    } else if (value === CompatibilityValue.CannotPlayTogether) {
+      for (const team of teams) {
+        if (team.includes(playerA) && team.includes(playerB)) {
+          return false;
+        }
+      }
+      return true;
+    }
+    return false;
+  }
 
   function dividePlayersIntoTeams(players: Player[]): [Player[], Player[]] {
     // Sortujemy graczy według ich skilli malejąco
@@ -53,6 +85,7 @@ const TeamSelection = ({ players }: TeamSelectionProps) => {
         <TeamPlayers title={'Team1'} players={firstTeam} />
         <TeamPlayers title={'Team2'} players={secondTeam} />
       </Box>
+      <p>{pass ? 'PASS' : 'NOT PASS'}</p>
     </Box>
   );
 };

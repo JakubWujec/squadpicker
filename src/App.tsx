@@ -23,7 +23,7 @@ function App() {
         <main className='routes'>
           <Routes>
             <Route path="/" element={<AddPlayers addPlayer={addPlayer} removePlayer={removePlayer} players={players} />} />
-            <Route path="/teams" element={<TeamSelection players={players} />} />
+            <Route path="/teams" element={<TeamSelection players={players} compatibilities={compatibilities} />} />
             <Route path="/compatiblities" element={<>
               <TeamCompatibilitiesForm
                 players={players}
