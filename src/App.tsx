@@ -13,7 +13,7 @@ import TeamCompatibilitiesList from './TeamCompatibilitiesList';
 
 function App() {
   const { players, addPlayer, removePlayer } = usePlayers();
-  const { compatibilities, addCompatibility } = useTeamCompatibility([])
+  const { compatibilities, addCompatibility, removeCompatibility } = useTeamCompatibility([])
 
   return (
     <div>
@@ -29,7 +29,7 @@ function App() {
                 players={players}
                 handleAddCompatibility={addCompatibility}
               />
-              <TeamCompatibilitiesList compatibilities={compatibilities} />
+              <TeamCompatibilitiesList compatibilities={compatibilities} onDelete={removeCompatibility} />
             </>} />
           </Routes>
         </main>

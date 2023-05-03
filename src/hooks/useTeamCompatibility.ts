@@ -11,9 +11,15 @@ const useTeamCompatibility = (initialCompatibilities: Compatibility[] = []) => {
       newCompatibility])
   };
 
+  const removeCompatibility = (compatibilityToRemove: Compatibility) => {
+    setCompatibilities(old => [...old
+      .filter(oldCompatibility => !(oldCompatibility.playerA === compatibilityToRemove.playerA && oldCompatibility.playerB === compatibilityToRemove.playerB))])
+  }
+
   return {
     compatibilities,
     addCompatibility,
+    removeCompatibility
   };
 };
 
