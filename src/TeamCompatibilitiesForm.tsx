@@ -11,18 +11,21 @@ interface TeamCompatibilitiesFormProps {
 const TeamCompatibilitiesForm = ({
   players, handleAddCompatibility
 }: TeamCompatibilitiesFormProps) => {
-  const [playerA, setPlayerA] = useState<Player | null>(null);
-  const [playerB, setPlayerB] = useState<Player | null>(null);
+  const [playerA, setPlayerA] = useState<Player>(players[0]);
+  const [playerB, setPlayerB] = useState<Player>(players[0]);
 
   const canAddCompatiblity = playerA && playerB && playerA.name != playerB.name;
 
-
   const handlePlayerAChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setPlayerA(players.find(player => player.name === event.target.value) ?? null);
+    setPlayerA(old => {
+      return players.find(player => player.name === event.target.value) ?? players[0]
+    });
   };
 
   const handlePlayerBChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setPlayerB(players.find(player => player.name === event.target.value) ?? null);
+    setPlayerB(old => {
+      return players.find(player => player.name === event.target.value) ?? players[0]
+    });
   };
 
   return (

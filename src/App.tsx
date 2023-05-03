@@ -2,6 +2,7 @@ import './App.css';
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
+import { Typography } from '@mui/material';
 import 'react-toastify/dist/ReactToastify.css';
 import AddPlayers from './AddPlayers';
 import Header from './Header';
@@ -25,11 +26,14 @@ function App() {
             <Route path="/" element={<AddPlayers addPlayer={addPlayer} removePlayer={removePlayer} players={players} />} />
             <Route path="/teams" element={<TeamSelection players={players} compatibilities={compatibilities} />} />
             <Route path="/compatiblities" element={<>
-              <TeamCompatibilitiesForm
-                players={players}
-                handleAddCompatibility={addCompatibility}
-              />
-              <TeamCompatibilitiesList compatibilities={compatibilities} onDelete={removeCompatibility} />
+              {players.length > 0 &&
+                <>
+                  <TeamCompatibilitiesForm
+                    players={players}
+                    handleAddCompatibility={addCompatibility}
+                  />
+                  <TeamCompatibilitiesList compatibilities={compatibilities} onDelete={removeCompatibility} /></>}
+              {players.length === 0 && <Typography>Not enough players</Typography>}
             </>} />
           </Routes>
         </main>

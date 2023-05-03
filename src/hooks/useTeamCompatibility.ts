@@ -4,7 +4,6 @@ import { getLocalStorage } from '../utils';
 
 const useTeamCompatibility = () => {
   const [compatibilities, setCompatibilities] = useState<Compatibility[]>(getLocalStorage<Compatibility[]>('compatibilities', []));
-  console.log(compatibilities)
   useEffect(() => {
     localStorage.setItem('compatibilities', JSON.stringify(compatibilities));
   }, [compatibilities]);
@@ -18,7 +17,7 @@ const useTeamCompatibility = () => {
   }
 
   const isCompatibilityBetweenPlayers = (compatibility: Compatibility, playerA: Player, playerB: Player) => {
-    let playerNames = [playerA.name, playerB.name]
+    const playerNames = [playerA.name, playerB.name]
     return !(playerNames.includes(compatibility.playerA.name) && playerNames.includes(compatibility.playerB.name))
   }
 
