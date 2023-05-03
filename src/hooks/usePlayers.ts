@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Player } from '../types';
 import { toast } from 'react-toastify';
+import { getLocalStorage } from '../utils';
 
 export function usePlayers() {
   const [players, setPlayers] = useState<Player[]>(() =>
@@ -25,16 +26,6 @@ export function usePlayers() {
   }
 
   return { players, addPlayer, removePlayer };
-}
-
-function getLocalStorage<T>(key: string, initialValue: T) {
-  try {
-    const value = window.localStorage.getItem(key);
-    return value ? JSON.parse(value) : initialValue;
-  } catch (e) {
-    // if error, return initial value
-    return initialValue;
-  }
 }
 
 

@@ -13,7 +13,7 @@ import TeamCompatibilitiesList from './TeamCompatibilitiesList';
 
 function App() {
   const { players, addPlayer, removePlayer } = usePlayers();
-  const { compatibilities, addCompatibility, removeCompatibility } = useTeamCompatibility([])
+  const { compatibilities, addCompatibility, removeCompatibility } = useTeamCompatibility()
 
   return (
     <div>
