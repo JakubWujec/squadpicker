@@ -27,14 +27,14 @@ const TeamSelection = ({ players, compatibilities }: TeamSelectionProps) => {
     const { playerA, playerB, value } = compatibility;
     if (value === CompatibilityValue.MustPlayTogether) {
       for (const team of teams) {
-        if (team.includes(playerA) && team.includes(playerB)) {
+        if (team.map(x => x.name).includes(playerA.name) && team.map(x => x.name).includes(playerB.name)) {
           return true;
         }
       }
       return false;
     } else if (value === CompatibilityValue.CannotPlayTogether) {
       for (const team of teams) {
-        if (team.includes(playerA) && team.includes(playerB)) {
+        if (team.map(x => x.name).includes(playerA.name) && team.map(x => x.name).includes(playerB.name)) {
           return false;
         }
       }
@@ -42,6 +42,37 @@ const TeamSelection = ({ players, compatibilities }: TeamSelectionProps) => {
     }
     return false;
   }
+
+  function randomlyDivide() {
+    let tries = 0;
+    let teamA: Player[] = [];
+    let teamB: Player[] = [];
+    let pool = [...players];
+
+    while (tries < 500) {
+      pool = [...players];
+      for (let i = 0; i < Math.floor(players.length / 2); i++) {
+        const randomIndex = Math.floor(Math.random() * pool.length)
+        const randomPlayer = pool[randomIndex]
+        teamA.push(randomPlayer)
+        pool.splice(randomIndex, 1);
+      }
+
+      if (compatibilitiesFullfilled([teamA, pool], compatibilities)) {
+        teamB = pool;
+        break;
+      }
+
+      teamA = []
+      tries++;
+    }
+
+    if (teamA.length) {
+      setFirstTeam(teamA);
+      setSecondTeam(teamB)
+    }
+  }
+
 
   function dividePlayersIntoTeams(players: Player[]): [Player[], Player[]] {
     // Sortujemy graczy według ich skilli malejąco
@@ -77,7 +108,7 @@ const TeamSelection = ({ players, compatibilities }: TeamSelectionProps) => {
   return (
     <Box>
       <Box sx={{ display: 'flex', justifyContent: 'center', mt: 3 }}>
-        <Button variant="contained" color="primary" onClick={handleTeamSplit}>
+        <Button variant="contained" color="primary" onClick={randomlyDivide}>
           Losuj drużyny
         </Button>
       </Box>
