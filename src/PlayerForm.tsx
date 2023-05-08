@@ -6,12 +6,14 @@ import Slider from '@mui/material/Slider';
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
 import { Player } from './types';
+import { useTranslation } from 'react-i18next';
 
 interface PlayerFormProps {
   onSubmit: (player: Player) => void;
 }
 
 function PlayerForm({ onSubmit }: PlayerFormProps) {
+  const { t } = useTranslation();
   const [name, setName] = useState('');
   const [skill, setSkill] = useState(5);
 
@@ -35,7 +37,7 @@ function PlayerForm({ onSubmit }: PlayerFormProps) {
   return (
     <Box sx={{ maxWidth: 400, mx: 'auto' }}>
       <Typography variant="h5" component="h2" gutterBottom>
-        Dodaj gracza
+        {t('addPlayer')}
       </Typography>
       <form onSubmit={handleSubmit}>
         <TextField
@@ -48,7 +50,7 @@ function PlayerForm({ onSubmit }: PlayerFormProps) {
         />
         <Box sx={{ mt: 2 }}>
           <Typography id="skill-slider" gutterBottom>
-            Skill
+            {t("skill")}
           </Typography>
           <Slider
             value={skill}
@@ -68,7 +70,7 @@ function PlayerForm({ onSubmit }: PlayerFormProps) {
             color="primary"
             endIcon={<SendIcon />}
           >
-            Dodaj
+            {t('add')}
           </Button>
         </Box>
       </form>
