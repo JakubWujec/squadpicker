@@ -1,9 +1,9 @@
 // @vitest-environment jsdom
 
-import { renderHook, act } from '@testing-library/react';
-import { usePlayers } from './usePlayers';
+import { act, renderHook } from '@testing-library/react';
+import { afterEach, describe, expect, it } from 'vitest';
 import { Player } from '../types';
-import { test, describe, afterEach, it, expect } from 'vitest'
+import { usePlayers } from './usePlayers';
 
 describe('usePlayers', () => {
   afterEach(() => {

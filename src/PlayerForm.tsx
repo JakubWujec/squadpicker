@@ -19,11 +19,11 @@ function PlayerForm({ onSubmit }: PlayerFormProps) {
     setName(event.target.value);
   };
 
-  const handleSkillChange = (event: Event, value: number | number[]) => {
-    if (typeof value === 'number') {
-      setSkill(value);
-    }
-  };
+  // const handleSkillChange = (value: number | number[]) => {
+  //   if (typeof value === 'number') {
+  //     setSkill(value);
+  //   }
+  // };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -52,7 +52,7 @@ function PlayerForm({ onSubmit }: PlayerFormProps) {
           </Typography>
           <Slider
             value={skill}
-            onChange={handleSkillChange}
+            // onChange={handleSkillChange}
             min={1}
             max={10}
             step={1}

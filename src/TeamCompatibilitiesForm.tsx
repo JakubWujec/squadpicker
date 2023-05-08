@@ -17,15 +17,11 @@ const TeamCompatibilitiesForm = ({
   const canAddCompatiblity = playerA && playerB && playerA.name != playerB.name;
 
   const handlePlayerAChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setPlayerA(old => {
-      return players.find(player => player.name === event.target.value) ?? players[0]
-    });
+    setPlayerA(players.find(player => player.name === event.target.value) ?? players[0]);
   };
 
   const handlePlayerBChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setPlayerB(old => {
-      return players.find(player => player.name === event.target.value) ?? players[0]
-    });
+    setPlayerB(players.find(player => player.name === event.target.value) ?? players[0]);
   };
 
   return (

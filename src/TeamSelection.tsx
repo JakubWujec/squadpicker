@@ -74,35 +74,35 @@ const TeamSelection = ({ players, compatibilities }: TeamSelectionProps) => {
   }
 
 
-  function dividePlayersIntoTeams(players: Player[]): [Player[], Player[]] {
-    // Sortujemy graczy według ich skilli malejąco
-    const sortedPlayers = [...players].sort((a, b) => b.skill - a.skill);
+  // function dividePlayersIntoTeams(players: Player[]): [Player[], Player[]] {
+  //   // Sortujemy graczy według ich skilli malejąco
+  //   const sortedPlayers = [...players].sort((a, b) => b.skill - a.skill);
 
-    // Tworzymy puste tablice na zawodników dla każdej z drużyn
-    const firstTeam: Player[] = [];
-    const secondTeam: Player[] = [];
+  //   // Tworzymy puste tablice na zawodników dla każdej z drużyn
+  //   const firstTeam: Player[] = [];
+  //   const secondTeam: Player[] = [];
 
-    // Przypisujemy kolejno po jednym zawodniku z listy posortowanej do drużyn,
-    // zaczynając od drużyny o mniejszej liczbie graczy
-    let currentTeam = firstTeam;
-    for (const player of sortedPlayers) {
-      currentTeam.push(player);
-      if (currentTeam === firstTeam) {
-        currentTeam = secondTeam;
-      } else {
-        currentTeam = firstTeam;
-      }
-    }
+  //   // Przypisujemy kolejno po jednym zawodniku z listy posortowanej do drużyn,
+  //   // zaczynając od drużyny o mniejszej liczbie graczy
+  //   let currentTeam = firstTeam;
+  //   for (const player of sortedPlayers) {
+  //     currentTeam.push(player);
+  //     if (currentTeam === firstTeam) {
+  //       currentTeam = secondTeam;
+  //     } else {
+  //       currentTeam = firstTeam;
+  //     }
+  //   }
 
-    return [firstTeam, secondTeam];
-  }
+  //   return [firstTeam, secondTeam];
+  // }
 
-  function handleTeamSplit() {
-    const [firstTeamPlayers, secondTeamPlayers] = dividePlayersIntoTeams(players);
+  // function handleTeamSplit() {
+  //   const [firstTeamPlayers, secondTeamPlayers] = dividePlayersIntoTeams(players);
 
-    setFirstTeam(firstTeamPlayers);
-    setSecondTeam(secondTeamPlayers);
-  }
+  //   setFirstTeam(firstTeamPlayers);
+  //   setSecondTeam(secondTeamPlayers);
+  // }
 
 
   return (
