@@ -10,12 +10,20 @@ import { useTranslation } from 'react-i18next';
 
 interface PlayerFormProps {
   onSubmit: (player: Player) => void;
+  defaultPlayer?: Player
 }
 
-function PlayerForm({ onSubmit }: PlayerFormProps) {
+function PlayerForm({ onSubmit, defaultPlayer = { name: '', skill: 5 } }: PlayerFormProps) {
   const { t } = useTranslation();
-  const [name, setName] = useState('');
-  const [skill, setSkill] = useState(5);
+  const [player, setPlayer] = useState(defaultPlayer);
+
+  const setName = (name: string) => {
+    setPlayer(old => { return { ...old, name } })
+  }
+
+  const setSkill = (skill: number) => {
+    setPlayer(old => { return { ...old, skill } })
+  }
 
   const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setName(event.target.value);
@@ -29,7 +37,7 @@ function PlayerForm({ onSubmit }: PlayerFormProps) {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    onSubmit({ name, skill });
+    onSubmit(player);
     setName('');
     setSkill(5);
   };
@@ -42,7 +50,7 @@ function PlayerForm({ onSubmit }: PlayerFormProps) {
       <form onSubmit={handleSubmit}>
         <TextField
           label="Nazwa"
-          value={name}
+          value={player.name}
           onChange={handleNameChange}
           fullWidth
           margin="normal"
@@ -53,7 +61,7 @@ function PlayerForm({ onSubmit }: PlayerFormProps) {
             {t("skill")}
           </Typography>
           <Slider
-            value={skill}
+            value={player.skill}
             onChange={handleSkillChange}
             min={1}
             max={10}
