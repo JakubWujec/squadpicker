@@ -11,6 +11,7 @@ export const resources = {
     translation: translationPL
   }
 };
+
 i18n.use(initReactI18next).init({
   lng: 'en',
   debug: true,
