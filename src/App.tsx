@@ -23,9 +23,9 @@ function App() {
         <ToastContainer autoClose={2500} />
         <main className='routes'>
           <Routes>
-            <Route path="/" element={<AddPlayers addPlayer={addPlayer} removePlayer={removePlayer} players={players} />} />
-            <Route path="/teams" element={<TeamSelection players={players} compatibilities={compatibilities} />} />
-            <Route path="/compatiblities" element={<>
+            <Route path="/squadpicker" element={<AddPlayers addPlayer={addPlayer} removePlayer={removePlayer} players={players} />} />
+            <Route path="/squadpicker/teams" element={<TeamSelection players={players} compatibilities={compatibilities} />} />
+            <Route path="/squadpicker/compatiblities" element={<>
               {players.length > 0 &&
                 <>
                   <TeamCompatibilitiesForm
