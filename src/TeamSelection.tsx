@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Compatibility, Player } from './types';
 import TeamPlayers from './TeamPlayers';
 import { CompatibilityValue } from './enums';
+import DraggableSelection from './teamSelection/DraggableSelection';
 
 interface TeamSelectionProps {
   players: Player[];
@@ -117,6 +118,7 @@ const TeamSelection = ({ players, compatibilities }: TeamSelectionProps) => {
         <TeamPlayers title={'Team2'} players={secondTeam} />
       </Box>
       <p>{pass ? 'PASS' : 'NOT PASS'}</p>
+      <DraggableSelection teams={[firstTeam, secondTeam]}></DraggableSelection>
     </Box>
   );
 };
