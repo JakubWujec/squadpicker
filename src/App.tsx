@@ -1,20 +1,18 @@
 import './App.css';
 
+import { Typography } from '@mui/material';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
-import { Typography } from '@mui/material';
 import 'react-toastify/dist/ReactToastify.css';
 import AddPlayers from './AddPlayers';
 import Header from './Header';
-import TeamSelection from './TeamSelection';
-import { usePlayers } from './hooks/usePlayers';
-import useTeamCompatibility from './hooks/useTeamCompatibility';
 import TeamCompatibilitiesForm from './TeamCompatibilitiesForm';
 import TeamCompatibilitiesList from './TeamCompatibilitiesList';
+import TeamSelection from './TeamSelection';
+import useStore from './store/appStore';
 
 function App() {
-  const { players, addPlayer, removePlayer } = usePlayers();
-  const { compatibilities, addCompatibility, removeCompatibility } = useTeamCompatibility()
+  const { players, addPlayer, removePlayer, compatibilities, addCompatibility, removeCompatibility } = useStore()
 
   return (
     <div>
