@@ -8,8 +8,8 @@ interface AppState {
   compatibilities: Compatibility[];
   addPlayer: (player: Player) => void;
   removePlayer: (playerName: string) => void;
-  addCompatibility: (compatiblity: Compatibility) => void;
-  removeCompatibility: (compatiblity: Compatibility) => void;
+  addCompatibility: (newCompatibility: Compatibility) => void;
+  removeCompatibility: (compatibility: Compatibility) => void;
 }
 
 const useStore = create<AppState>()(
@@ -21,10 +21,11 @@ const useStore = create<AppState>()(
         set(store => ({ players: [...store.players, player] })),
       removePlayer: (playerName: string) =>
         set(store => ({ players: store.players.filter(p => p.name != playerName) })),
-      addCompatibility: (compatiblity: Compatibility) =>
-        set(store => ({ compatibilities: [...store.compatibilities, compatiblity] })),
-      removeCompatibility: (compatiblity: Compatibility) =>
-        set(store => ({ compatibilities: store.compatibilities.filter(c => c != compatiblity) })),
+      addCompatibility: (newCompatibility: Compatibility) =>
+        set(store => ({ compatibilities: [...store.compatibilities.filter(comp => isCompatibilityBetweenPlayers(comp, newCompatibility.playerA, newCompatibility.playerB)), newCompatibility] })),
+      removeCompatibility: (compatibility: Compatibility) =>
+        set(store => ({ compatibilities: store.compatibilities.filter(comp => isCompatibilityBetweenPlayers(comp, compatibility.playerA, compatibility.playerB)) })),
+
     }),
     {
       name: 'zustand-squad',
@@ -32,5 +33,10 @@ const useStore = create<AppState>()(
     }
   )
 )
+
+const isCompatibilityBetweenPlayers = (compatibility: Compatibility, playerA: Player, playerB: Player) => {
+  const playerNames = [playerA.name, playerB.name]
+  return !(playerNames.includes(compatibility.playerA.name) && playerNames.includes(compatibility.playerB.name))
+}
 
 export default useStore;
