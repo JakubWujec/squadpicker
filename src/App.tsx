@@ -3,10 +3,11 @@ import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import AddPlayers from './AddPlayers';
-import Header from './Header';
-import TeamCompatibilities from './TeamCompatibilities';
-import TeamSelection from './TeamSelection';
+import AddPlayers from './components/players/AddPlayers';
+import Header from './components/layout/Header';
+import TeamCompatibilities from './components/compatibilities/TeamCompatibilities';
+import TeamSelection from './components/teams/TeamSelection';
+
 
 function App() {
 

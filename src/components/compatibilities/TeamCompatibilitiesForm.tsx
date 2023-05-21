@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Button, TextField, Grid, MenuItem } from '@mui/material';
-import { Compatibility, Player } from './types';
-import { CompatibilityValue } from './enums';
+import { Compatibility, Player } from '../../types';
+import { CompatibilityValue } from '../../enums';
 
 interface TeamCompatibilitiesFormProps {
   players: Player[];

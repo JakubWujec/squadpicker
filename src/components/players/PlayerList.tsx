@@ -1,4 +1,4 @@
-import { Player } from './types'
+import { Player } from '../../types'
 import { Box, IconButton, Typography } from '@mui/material';
 import { Delete as DeleteIcon } from "@mui/icons-material"
 interface PlayerListProps {

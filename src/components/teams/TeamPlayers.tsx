@@ -1,4 +1,4 @@
-import { Player } from './types';
+import { Player } from '../../types';
 import { Box, Typography, List, ListItem } from '@mui/material';
 
 interface TeamPlayersProps {

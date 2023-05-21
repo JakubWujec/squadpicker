@@ -1,9 +1,9 @@
 import { Box, Button } from '@mui/material';
 import { useState } from 'react';
-import { Compatibility, Player } from './types';
+import { Compatibility, Player } from '../../types';
 import TeamPlayers from './TeamPlayers';
-import { CompatibilityValue } from './enums';
-import useStore from './store/appStore';
+import { CompatibilityValue } from '../../enums';
+import useStore from '../../store/appStore';
 
 
 const TeamSelection = () => {

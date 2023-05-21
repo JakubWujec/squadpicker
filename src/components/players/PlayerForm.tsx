@@ -5,7 +5,7 @@ import TextField from '@mui/material/TextField';
 import Slider from '@mui/material/Slider';
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
-import { Player } from './types';
+import { Player } from '../../types';
 import { useTranslation } from 'react-i18next';
 
 interface PlayerFormProps {

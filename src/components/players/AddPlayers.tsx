@@ -1,7 +1,7 @@
 import { Box } from '@mui/material';
 import PlayerForm from './PlayerForm';
+import useStore from '../../store/appStore';
 import PlayerList from './PlayerList';
-import useStore from './store/appStore';
 
 
 const AddPlayers = () => {

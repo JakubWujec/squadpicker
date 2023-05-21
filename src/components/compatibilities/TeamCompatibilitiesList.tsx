@@ -3,8 +3,8 @@ import LinkIcon from '@mui/icons-material/Link';
 import LinkOffIcon from '@mui/icons-material/LinkOff';
 import { IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { Compatibility } from "./types";
-import { CompatibilityValue } from './enums';
+import { Compatibility } from "../../types";
+import { CompatibilityValue } from '../../enums';
 interface Props {
   compatibilities: Compatibility[];
   onDelete: (compatibility: Compatibility) => void;

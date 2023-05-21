@@ -1,6 +1,6 @@
 import TeamCompatibilitiesForm from "./TeamCompatibilitiesForm"
 import TeamCompatibilitiesList from "./TeamCompatibilitiesList";
-import useStore from "./store/appStore";
+import useStore from "../../store/appStore";
 import { Typography } from '@mui/material';
 
 const TeamCompatibilities = () => {

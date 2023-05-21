@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { AppBar, Toolbar, Button } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import LanguageSelector from "./LanguageSelector";
-import { resources } from "./i18n/config";
+import { resources } from "../../i18n/config";
 
 const availableLanguages = Object.keys(resources)
 
