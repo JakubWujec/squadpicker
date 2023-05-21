@@ -1,15 +1,14 @@
 import { Box } from '@mui/material';
 import PlayerForm from './PlayerForm';
 import PlayerList from './PlayerList';
-import { Player } from './types';
+import useStore from './store/appStore';
 
-interface AddPlayersProps {
-  addPlayer(player: Player): void
-  removePlayer(playerName: string): void
-  players: Player[]
-}
 
-const AddPlayers = ({ addPlayer, removePlayer, players }: AddPlayersProps) => {
+const AddPlayers = () => {
+  const addPlayer = useStore((store) => store.addPlayer)
+  const players = useStore((store) => store.players);
+  const removePlayer = useStore((store) => store.removePlayer)
+
   return (
     <Box>
       <PlayerForm onSubmit={addPlayer}></PlayerForm>

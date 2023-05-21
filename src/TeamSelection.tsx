@@ -3,13 +3,12 @@ import { useState } from 'react';
 import { Compatibility, Player } from './types';
 import TeamPlayers from './TeamPlayers';
 import { CompatibilityValue } from './enums';
+import useStore from './store/appStore';
 
-interface TeamSelectionProps {
-  players: Player[];
-  compatibilities: Compatibility[];
-}
 
-const TeamSelection = ({ players, compatibilities }: TeamSelectionProps) => {
+const TeamSelection = () => {
+  const players = useStore((store) => store.players);
+  const compatibilities = useStore((store) => store.compatibilities);
   const [firstTeam, setFirstTeam] = useState<Player[]>([]);
   const [secondTeam, setSecondTeam] = useState<Player[]>([]);
   const pass = compatibilitiesFullfilled([firstTeam, secondTeam], compatibilities);
@@ -72,38 +71,6 @@ const TeamSelection = ({ players, compatibilities }: TeamSelectionProps) => {
       setSecondTeam(teamB)
     }
   }
-
-
-  // function dividePlayersIntoTeams(players: Player[]): [Player[], Player[]] {
-  //   // Sortujemy graczy według ich skilli malejąco
-  //   const sortedPlayers = [...players].sort((a, b) => b.skill - a.skill);
-
-  //   // Tworzymy puste tablice na zawodników dla każdej z drużyn
-  //   const firstTeam: Player[] = [];
-  //   const secondTeam: Player[] = [];
-
-  //   // Przypisujemy kolejno po jednym zawodniku z listy posortowanej do drużyn,
-  //   // zaczynając od drużyny o mniejszej liczbie graczy
-  //   let currentTeam = firstTeam;
-  //   for (const player of sortedPlayers) {
-  //     currentTeam.push(player);
-  //     if (currentTeam === firstTeam) {
-  //       currentTeam = secondTeam;
-  //     } else {
-  //       currentTeam = firstTeam;
-  //     }
-  //   }
-
-  //   return [firstTeam, secondTeam];
-  // }
-
-  // function handleTeamSplit() {
-  //   const [firstTeamPlayers, secondTeamPlayers] = dividePlayersIntoTeams(players);
-
-  //   setFirstTeam(firstTeamPlayers);
-  //   setSecondTeam(secondTeamPlayers);
-  // }
-
 
   return (
     <Box>
