@@ -11,8 +11,14 @@ interface Compatibility {
   value: CompatibilityValue
 }
 
+interface Team {
+  teamId: number;
+  name: string;
+  playerNames: string[];
+}
 
 export type {
   Player,
   Compatibility,
+  Team
 }
