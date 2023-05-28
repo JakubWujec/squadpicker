@@ -3,6 +3,7 @@ import { Compatibility, Player } from '../../types';
 import TeamPlayers from './TeamPlayers';
 import { CompatibilityValue } from '../../enums';
 import useStore from '../../store/appStore';
+import DraggableSelection from '../teamSelection/DraggableSelection';
 
 
 const TeamSelection = () => {
@@ -95,6 +96,7 @@ const TeamSelection = () => {
         <TeamPlayers title={'Team1'} players={firstTeamPlayers} />
         <TeamPlayers title={'Team2'} players={secondTeamPlayers} />
       </Box>
+      <DraggableSelection teams={[firstTeam, secondTeam]}></DraggableSelection>
       <p>{pass ? 'PASS' : 'NOT PASS'}</p>
     </Box>
   );
