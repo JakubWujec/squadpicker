@@ -2,7 +2,8 @@ import { Typography } from '@mui/material';
 import DraggablePlayer from './DraggablePlayer';
 import { ReactNode } from 'react';
 import { Droppable, Draggable } from '@hello-pangea/dnd';
-import { Player } from '../../types';
+import { Player, Team } from '../../types';
+import useStore from '../../store/appStore';
 
 
 const Container = ({ children, ...props }: { children: ReactNode }) => {
@@ -31,24 +32,28 @@ const PlayerList = ({ isDraggingOver, children, innerRef, ...props }: { isDraggi
 }
 
 interface DroppableTeamColumnProps {
-  players: Player[];
-  title: string;
+  team: Team
 }
 
-const DroppableTeamColumn = ({ players, title }: DroppableTeamColumnProps) => {
+const DroppableTeamColumn = ({ team }: DroppableTeamColumnProps) => {
+  const players = useStore((store) => store.players);
+  const title = team.name;
+  const teamPlayers = team.playerNames.map(playerName => players.find(player => player.name == playerName)).filter(p => p != null) as Player[]
 
   return (
     <Container>
       <Typography>{title}</Typography>
-      <Droppable droppableId={title}>
+      <Droppable droppableId={team.teamId}>
         {(provided, snapshot) => (
           <PlayerList
             {...provided.droppableProps}
             innerRef={provided.innerRef}
             isDraggingOver={snapshot.isDraggingOver}
           >
-            {players.map((player, index) => (
-              <DraggablePlayer player={player} index={index}></DraggablePlayer>
+            {teamPlayers.map((player, index) => (
+              <div key={player.name}>
+                <DraggablePlayer player={player} index={index}></DraggablePlayer>
+              </div>
             ))}
             {provided.placeholder}
           </PlayerList>

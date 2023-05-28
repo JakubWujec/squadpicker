@@ -72,12 +72,12 @@ const TeamSelection = () => {
     if (playersInFirstTeam.length) {
       setTeams([
         {
-          teamId: 1,
+          teamId: "1",
           name: "Team 1",
           playerNames: playersInFirstTeam.map(x => x.name)
         },
         {
-          teamId: 2,
+          teamId: "2",
           name: "Team 2",
           playerNames: playerInSecondTeam.map(x => x.name)
         }]
@@ -96,7 +96,7 @@ const TeamSelection = () => {
         <TeamPlayers title={'Team1'} players={firstTeamPlayers} />
         <TeamPlayers title={'Team2'} players={secondTeamPlayers} />
       </Box>
-      <DraggableSelection teams={[firstTeam, secondTeam]}></DraggableSelection>
+      <DraggableSelection></DraggableSelection>
       <p>{pass ? 'PASS' : 'NOT PASS'}</p>
     </Box>
   );

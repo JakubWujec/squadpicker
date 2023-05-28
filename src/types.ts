@@ -12,7 +12,7 @@ interface Compatibility {
 }
 
 interface Team {
-  teamId: number;
+  teamId: string;
   name: string;
   playerNames: string[];
 }

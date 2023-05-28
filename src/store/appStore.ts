@@ -21,12 +21,12 @@ const useStore = create<AppState>()(
       compatibilities: [],
       teams: [
         {
-          teamId: 1,
+          teamId: "1",
           name: "Team 1",
           playerNames: []
         },
         {
-          teamId: 2,
+          teamId: "2",
           name: "Team 2",
           playerNames: []
         }
