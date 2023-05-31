@@ -40,7 +40,7 @@ const DraggableSelection = () => {
 
   return (
     <DragDropContext onDragEnd={dragEndHandler}>
-      <Box sx={{ display: "flex", maxWidth: 400, mx: 'auto', my: 4 }}>
+      <Box sx={{ display: "flex", justifyContent: "center", maxWidth: 800, mx: 'auto', my: 4 }}>
         {Object.values(teams).map(_team =>
           <Container>
             <Typography>{_team.teamId}</Typography>
