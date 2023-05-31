@@ -1,9 +1,24 @@
 import { DragDropContext, OnDragEndResponder } from '@hello-pangea/dnd';
 import { Box } from '@mui/material';
+import { Typography } from '@mui/material';
 
 import DroppableTeamColumn from './DroppableTeamColumn';
 import { Team, Teams } from '../../types';
 import useStore from '../../store/appStore';
+import { ReactNode } from 'react';
+
+const Container = ({ children, ...props }: { children: ReactNode }) => {
+  return <div {...props} style={{
+    margin: '8px',
+    border: '1px solid lightgrey',
+    borderRadius: '2px',
+    width: '220px',
+    display: 'flex',
+    flexDirection: 'column',
+  }}>
+    {children}
+  </div>
+}
 
 const DraggableSelection = () => {
   const teams = useStore((store) => store.teams);
@@ -26,8 +41,12 @@ const DraggableSelection = () => {
   return (
     <DragDropContext onDragEnd={dragEndHandler}>
       <Box sx={{ display: "flex", maxWidth: 400, mx: 'auto', my: 4 }}>
-        <DroppableTeamColumn team={teams["team1"]}></DroppableTeamColumn>
-        <DroppableTeamColumn team={teams["team2"]}></DroppableTeamColumn>
+        {Object.values(teams).map(_team =>
+          <Container>
+            <Typography>{_team.teamId}</Typography>
+            <DroppableTeamColumn team={_team}></DroppableTeamColumn>
+          </Container>
+        )}
       </Box>
     </DragDropContext >)
 
