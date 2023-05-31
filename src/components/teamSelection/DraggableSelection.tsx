@@ -2,41 +2,32 @@ import { DragDropContext, OnDragEndResponder } from '@hello-pangea/dnd';
 import { Box } from '@mui/material';
 
 import DroppableTeamColumn from './DroppableTeamColumn';
-import { Team } from '../../types';
+import { Team, Teams } from '../../types';
 import useStore from '../../store/appStore';
-
-// interface DraggableSelectionProps {
-//   teams: Player[][];
-// }
-
 
 const DraggableSelection = () => {
   const teams = useStore((store) => store.teams);
   const setTeams = useStore((store) => store.setTeams)
 
   const dragEndHandler: OnDragEndResponder = ({ source, destination }) => {
-    const { index, droppableId } = source;
-    const teamFrom = teams.find(team => team.teamId === droppableId) as Team;
-    const transferName = teamFrom.playerNames[index];
-
-    setTeams([
-      {
-        teamId: "1",
-        name: "Team 1",
-        playerNames: [...teams[0].playerNames.filter(name => name != transferName)]
-      },
-      {
-        teamId: "2",
-        name: "Team 2",
-        playerNames: [...teams[1].playerNames.filter(name => name != transferName)]
-      }])
+    if (destination && destination.droppableId != source.droppableId) {
+      // eslint-disable-next-line prefer-const
+      let teamsCopy = JSON.parse(JSON.stringify(teams)) as Teams;
+      const teamFrom = source.droppableId;
+      const playerName = teamsCopy[teamFrom].playerNames[source.index];
+      const teamTo = destination.droppableId;
+      console.log("XX", playerName, teamFrom, teamTo);
+      teamsCopy[teamFrom].playerNames = teamsCopy[teamFrom].playerNames.filter(pn => pn != playerName);
+      teamsCopy[teamTo].playerNames = [...(teams[teamTo].playerNames), playerName];
+      setTeams(teamsCopy);
+    }
   }
 
   return (
     <DragDropContext onDragEnd={dragEndHandler}>
       <Box sx={{ display: "flex", maxWidth: 400, mx: 'auto', my: 4 }}>
-        <DroppableTeamColumn team={teams[0]}></DroppableTeamColumn>
-        <DroppableTeamColumn team={teams[1]}></DroppableTeamColumn>
+        <DroppableTeamColumn team={teams["team1"]}></DroppableTeamColumn>
+        <DroppableTeamColumn team={teams["team2"]}></DroppableTeamColumn>
       </Box>
     </DragDropContext >)
 

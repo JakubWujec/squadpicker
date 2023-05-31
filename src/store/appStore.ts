@@ -1,13 +1,13 @@
 import { create } from 'zustand'
 import { persist, createJSONStorage } from 'zustand/middleware'
-import { Compatibility, Player, Team } from '../types';
+import { Compatibility, Player, Team, Teams } from '../types';
 
 
 interface AppState {
   players: Player[];
   compatibilities: Compatibility[];
-  teams: Team[];
-  setTeams: (teams: Team[]) => void;
+  teams: Teams;
+  setTeams: (teams: Teams) => void;
   addPlayer: (player: Player) => void;
   removePlayer: (playerName: string) => void;
   addCompatibility: (newCompatibility: Compatibility) => void;
@@ -19,19 +19,19 @@ const useStore = create<AppState>()(
     (set) => ({
       players: [],
       compatibilities: [],
-      teams: [
-        {
-          teamId: "1",
+      teams: {
+        "team1": {
+          teamId: "team1",
           name: "Team 1",
-          playerNames: []
+          playerNames: [],
         },
-        {
-          teamId: "2",
-          name: "Team 2",
-          playerNames: []
+        "team2": {
+          teamId: "team1",
+          name: "Team 1",
+          playerNames: [],
         }
-      ],
-      setTeams: (teams: Team[]) =>
+      },
+      setTeams: (teams: Teams) =>
         set(({ teams: teams })),
       addPlayer: (player: Player) =>
         set(store => ({ players: [...store.players, player] })),

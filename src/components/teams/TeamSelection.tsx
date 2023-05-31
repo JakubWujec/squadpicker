@@ -11,8 +11,8 @@ const TeamSelection = () => {
   const compatibilities = useStore((store) => store.compatibilities);
   const teams = useStore((store) => store.teams);
   const setTeams = useStore((store) => store.setTeams)
-  const firstTeamPlayers = teams[0].playerNames.map(playerName => players.find(player => player.name == playerName)).filter(p => p != null) as Player[]
-  const secondTeamPlayers = teams[1].playerNames.map(playerName => players.find(player => player.name == playerName)).filter(p => p != null) as Player[]
+  const firstTeamPlayers = teams["team1"].playerNames.map(playerName => players.find(player => player.name == playerName)).filter(p => p != null) as Player[]
+  const secondTeamPlayers = teams["team2"].playerNames.map(playerName => players.find(player => player.name == playerName)).filter(p => p != null) as Player[]
 
   const pass = compatibilitiesFullfilled([firstTeamPlayers, secondTeamPlayers], compatibilities);
 
@@ -70,17 +70,18 @@ const TeamSelection = () => {
     }
 
     if (playersInFirstTeam.length) {
-      setTeams([
-        {
-          teamId: "1",
+      setTeams({
+        "team1": {
+          teamId: "team1",
           name: "Team 1",
           playerNames: playersInFirstTeam.map(x => x.name)
         },
-        {
-          teamId: "2",
+        "team2": {
+          teamId: "team2",
           name: "Team 2",
           playerNames: playerInSecondTeam.map(x => x.name)
-        }]
+        }
+      }
       )
     }
   }

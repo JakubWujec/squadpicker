@@ -11,14 +11,19 @@ interface Compatibility {
   value: CompatibilityValue
 }
 
+type Teams = {
+  [key: string]: Team;
+}
 interface Team {
-  teamId: string;
+  teamId: Extract<keyof Teams, string>;
   name: string;
   playerNames: string[];
 }
 
+
 export type {
   Player,
   Compatibility,
-  Team
+  Team,
+  Teams
 }
