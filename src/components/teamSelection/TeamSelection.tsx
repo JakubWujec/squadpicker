@@ -1,9 +1,8 @@
 import { Box, Button } from '@mui/material';
 import { Compatibility, Player } from '../../types';
-import TeamPlayers from './TeamPlayers';
 import { CompatibilityValue } from '../../enums';
 import useStore from '../../store/appStore';
-import DraggableSelection from '../teamSelection/DraggableSelection';
+import DraggableSelection from './DraggableSelection';
 
 
 const TeamSelection = () => {
@@ -92,10 +91,6 @@ const TeamSelection = () => {
         <Button variant="contained" color="primary" onClick={randomlyDivide}>
           Losuj drużyny
         </Button>
-      </Box>
-      <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 2 }}>
-        <TeamPlayers title={'Team1'} players={firstTeamPlayers} />
-        <TeamPlayers title={'Team2'} players={secondTeamPlayers} />
       </Box>
       <DraggableSelection></DraggableSelection>
       <p>{pass ? 'PASS' : 'NOT PASS'}</p>

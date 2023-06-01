@@ -6,7 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import AddPlayers from './components/players/AddPlayers';
 import Header from './components/layout/Header';
 import TeamCompatibilities from './components/compatibilities/TeamCompatibilities';
-import TeamSelection from './components/teams/TeamSelection';
+import TeamSelection from './components/teamSelection/TeamSelection';
 
 
 function App() {
