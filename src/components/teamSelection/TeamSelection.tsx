@@ -10,8 +10,8 @@ const TeamSelection = () => {
   const compatibilities = useStore((store) => store.compatibilities);
   const teams = useStore((store) => store.teams);
   const setTeams = useStore((store) => store.setTeams)
-  const firstTeamPlayers = teams["team1"].playerNames.map(playerName => players.find(player => player.name == playerName)).filter(p => p != null) as Player[]
-  const secondTeamPlayers = teams["team2"].playerNames.map(playerName => players.find(player => player.name == playerName)).filter(p => p != null) as Player[]
+  const firstTeamPlayers = teams["team1"].playerNames.map(playerName => players[playerName])
+  const secondTeamPlayers = teams["team2"].playerNames.map(playerName => players[playerName])
 
   const pass = compatibilitiesFullfilled([firstTeamPlayers, secondTeamPlayers], compatibilities);
 
@@ -48,11 +48,11 @@ const TeamSelection = () => {
     let tries = 0;
     let playersInFirstTeam: Player[] = [];
     let playerInSecondTeam: Player[] = [];
-    let pool = [...players];
+    let pool = Object.values(players);
 
     while (tries < 500) {
-      pool = [...players];
-      for (let i = 0; i < Math.floor(players.length / 2); i++) {
+      pool = Object.values(players);
+      for (let i = 0; i < Math.floor(Object.keys(players).length / 2); i++) {
         const randomIndex = Math.floor(Math.random() * pool.length)
         const randomPlayer = pool[randomIndex]
         playersInFirstTeam.push(randomPlayer)

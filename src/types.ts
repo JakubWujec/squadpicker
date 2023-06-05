@@ -5,6 +5,10 @@ interface Player {
   skill: number;
 }
 
+type Players = {
+  [key: string]: Player
+}
+
 interface Compatibility {
   playerA: Player,
   playerB: Player,
@@ -22,6 +26,7 @@ interface Team {
 
 
 export type {
+  Players,
   Player,
   Compatibility,
   Team,

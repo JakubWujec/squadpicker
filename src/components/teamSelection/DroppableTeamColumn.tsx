@@ -23,7 +23,7 @@ interface DroppableTeamColumnProps {
 
 const DroppableTeamColumn = ({ team }: DroppableTeamColumnProps) => {
   const players = useStore((store) => store.players);
-  const teamPlayers = team.playerNames.map(playerName => players.find(player => player.name == playerName)).filter(p => p != null) as Player[]
+  const teamPlayers = team.playerNames.map(playerName => players[playerName]);
 
   return (
     <Droppable droppableId={team.teamId}>

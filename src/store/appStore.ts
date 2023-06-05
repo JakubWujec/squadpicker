@@ -1,10 +1,10 @@
 import { create } from 'zustand'
 import { persist, createJSONStorage } from 'zustand/middleware'
-import { Compatibility, Player, Team, Teams } from '../types';
+import { Compatibility, Player, Team, Teams, Players } from '../types';
 
 
 interface AppState {
-  players: Player[];
+  players: Players;
   compatibilities: Compatibility[];
   teams: Teams;
   setTeams: (teams: Teams) => void;
@@ -17,7 +17,7 @@ interface AppState {
 const useStore = create<AppState>()(
   persist(
     (set) => ({
-      players: [],
+      players: {},
       compatibilities: [],
       teams: {
         "team1": {
@@ -26,22 +26,21 @@ const useStore = create<AppState>()(
           playerNames: [],
         },
         "team2": {
-          teamId: "team1",
-          name: "Team 1",
+          teamId: "team2",
+          name: "Team 2",
           playerNames: [],
         }
       },
       setTeams: (teams: Teams) =>
         set(({ teams: teams })),
       addPlayer: (player: Player) =>
-        set(store => ({ players: [...store.players, player] })),
+        set(store => ({ players: { ...JSON.parse(JSON.stringify(store.players)), [player.name]: player } })),
       removePlayer: (playerName: string) =>
-        set(store => ({ players: store.players.filter(p => p.name != playerName) })),
+        set(store => ({ players: omitPlayer(store.players, playerName) })),
       addCompatibility: (newCompatibility: Compatibility) =>
         set(store => ({ compatibilities: [...store.compatibilities.filter(comp => isCompatibilityBetweenPlayers(comp, newCompatibility.playerA, newCompatibility.playerB)), newCompatibility] })),
       removeCompatibility: (compatibility: Compatibility) =>
         set(store => ({ compatibilities: store.compatibilities.filter(comp => isCompatibilityBetweenPlayers(comp, compatibility.playerA, compatibility.playerB)) })),
-
     }),
     {
       name: 'zustand-squad',
@@ -54,5 +53,14 @@ const isCompatibilityBetweenPlayers = (compatibility: Compatibility, playerA: Pl
   const playerNames = [playerA.name, playerB.name]
   return !(playerNames.includes(compatibility.playerA.name) && playerNames.includes(compatibility.playerB.name))
 }
+
+function omitPlayer(players: Players, key: string) {
+  let playersCopy = JSON.parse(JSON.stringify(players));
+  console.log(playersCopy, key);
+  delete playersCopy[key];
+  console.log(playersCopy, key);
+  return playersCopy
+}
+
 
 export default useStore;
