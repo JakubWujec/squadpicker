@@ -18,16 +18,16 @@ const TeamSelection = () => {
 
   function compatibilitiesFullfilledCount(teamPlayers: Player[][], compatibilities: Compatibility[]): number {
     return compatibilities
-      .filter(compatibility => compatibilityFullfilled(teamPlayers, compatibility))
+      .filter(compatibility => isCompatibilityFullfilled(teamPlayers, compatibility))
       .length
   }
 
   function compatibilitiesFullfilled(teamPlayers: Player[][], compatibilities: Compatibility[]) {
     return compatibilities
-      .every(compatibility => compatibilityFullfilled(teamPlayers, compatibility));
+      .every(compatibility => isCompatibilityFullfilled(teamPlayers, compatibility));
   }
 
-  function compatibilityFullfilled(teamPlayers: Player[][], compatibility: Compatibility) {
+  function isCompatibilityFullfilled(teamPlayers: Player[][], compatibility: Compatibility) {
     const { playerA, playerB, value } = compatibility;
     if (value === CompatibilityValue.MustPlayTogether) {
       for (const team of teamPlayers) {
