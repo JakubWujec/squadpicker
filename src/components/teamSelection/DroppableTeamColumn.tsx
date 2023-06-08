@@ -1,9 +1,9 @@
 
-import DraggablePlayer from './DraggablePlayer';
 import { ReactNode } from 'react';
 import { Droppable, Draggable } from '@hello-pangea/dnd';
 import { Player, Team } from '../../types';
 import useStore from '../../store/appStore';
+import DraggablePlayer from './DraggablePlayer';
 
 const PlayerList = ({ isDraggingOver, children, innerRef, ...props }: { isDraggingOver: boolean, children: ReactNode, innerRef: any }) => {
   return <div {...props} style={{

@@ -16,14 +16,12 @@ const Container = ({ isDragging, children, innerRef, ...props }: { isDragging: b
     </div>
   </div>
 }
-
-
-interface DraggablePlayer {
+interface DraggablePlayerProps {
   player: Player
   index: number;
 }
 
-const DraggablePlayer = ({ player, index, ...props }: DraggablePlayer) => {
+const DraggablePlayer = ({ player, index, ...props }: DraggablePlayerProps) => {
   return (
     <Draggable draggableId={player.name} index={index} {...props}>
       {(provided, snapshot) => (
