@@ -1,4 +1,4 @@
-import { Box, Button } from '@mui/material';
+import { Box, Button, Typography } from '@mui/material';
 import { Compatibility, Player } from '../../types';
 import { CompatibilityValue } from '../../enums';
 import useStore from '../../store/appStore';
@@ -14,14 +14,17 @@ const TeamSelection = () => {
   const secondTeamPlayers = teams["team2"].playerNames.map(playerName => players[playerName])
 
   const pass = compatibilitiesFullfilled([firstTeamPlayers, secondTeamPlayers], compatibilities);
+  const count = compatibilitiesFullfilledCount([firstTeamPlayers, secondTeamPlayers], compatibilities);
+
+  function compatibilitiesFullfilledCount(teamPlayers: Player[][], compatibilities: Compatibility[]): number {
+    return compatibilities
+      .filter(compatibility => compatibilityFullfilled(teamPlayers, compatibility))
+      .length
+  }
 
   function compatibilitiesFullfilled(teamPlayers: Player[][], compatibilities: Compatibility[]) {
-    for (const compatibility of compatibilities) {
-      if (!compatibilityFullfilled(teamPlayers, compatibility)) {
-        return false;
-      }
-    }
-    return true;
+    return compatibilities
+      .every(compatibility => compatibilityFullfilled(teamPlayers, compatibility));
   }
 
   function compatibilityFullfilled(teamPlayers: Player[][], compatibility: Compatibility) {
@@ -93,7 +96,9 @@ const TeamSelection = () => {
         </Button>
       </Box>
       <DraggableSelection></DraggableSelection>
-      <p>{pass ? 'PASS' : 'NOT PASS'}</p>
+      <Typography>
+        {`Compatibilities ${count} / ${compatibilities.length}`}
+      </Typography>
     </Box>
   );
 };
