@@ -30,12 +30,11 @@ const TeamSelection = () => {
   function isCompatibilityFullfilled(teamPlayers: Player[][], compatibility: Compatibility) {
     const { playerA, playerB, value } = compatibility;
     if (value === CompatibilityValue.MustPlayTogether) {
-      for (const team of teamPlayers) {
-        if (team.map(x => x.name).includes(playerA.name) && team.map(x => x.name).includes(playerB.name)) {
-          return true;
-        }
-      }
-      return false;
+      return Object
+        .values(teams)
+        .some(team =>
+          team.playerNames.includes(playerA.name) &&
+          team.playerNames.includes(playerB.name))
     } else if (value === CompatibilityValue.CannotPlayTogether) {
       for (const team of teamPlayers) {
         if (team.map(x => x.name).includes(playerA.name) && team.map(x => x.name).includes(playerB.name)) {
